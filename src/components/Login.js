@@ -1,22 +1,25 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
-import { useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { loginUser } from "../redux/actions/userActions";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const user = useSelector((state) => state.user.currentUser);
-  if (user) {
-    return <Redirect to="/home" />;
-  }
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  useEffect(() => {
+    if (user.auth) {
+      history.push("/home");
+    }
+  }, [history, user.auth]);
 
   const submitForm = (e) => {
     e.preventDefault();
-    console.log("Login form clicked");
-    loginUser({ username, password });
+    dispatch(loginUser({ username, password }));
   };
 
   return (

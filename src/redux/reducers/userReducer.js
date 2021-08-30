@@ -1,11 +1,18 @@
 import { UserActionTypes } from "../constants/userActionTypes";
 
 const initialState = {
-  currentUser: JSON.parse(localStorage.getItem("user")),
+  id: null,
+  username: null,
+  token: null,
+  auth: false,
   isLoading: false
 };
 
-export const userReducer = (state = initialState, { type, payload }) => {
+const persistedState = localStorage.getItem("user")
+  ? JSON.parse(localStorage.getItem("user"))
+  : initialState;
+
+export const userReducer = (state = persistedState, { type, payload }) => {
   switch (type) {
     case UserActionTypes.USER_LOADING:
       return {
@@ -20,7 +27,6 @@ export const userReducer = (state = initialState, { type, payload }) => {
       };
     case UserActionTypes.LOGIN_SUCCESS:
     case UserActionTypes.REGISTER_SUCCESS:
-      localStorage.setItem(payload);
       return {
         ...state,
         ...payload,
@@ -29,11 +35,13 @@ export const userReducer = (state = initialState, { type, payload }) => {
     case UserActionTypes.LOGIN_FAIL:
     case UserActionTypes.REGISTER_FAIL:
     case UserActionTypes.LOGOUT:
+    case UserActionTypes.USER_LOADING_FAIL:
       return {
         ...state,
         token: null,
         username: null,
-        id: null
+        id: null,
+        auth: false
       };
     default:
       return state;
