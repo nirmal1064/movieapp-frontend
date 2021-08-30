@@ -4,7 +4,7 @@ import { UserActionTypes } from "../constants/userActionTypes";
 export const loadUser = () => (dispatch, getState) => {
   dispatch({ type: UserActionTypes.USER_LOADING });
   const { auth, token } = getState().user;
-  let config = {
+  const config = {
     headers: {
       "Content-type": "application/json"
     }
@@ -12,7 +12,7 @@ export const loadUser = () => (dispatch, getState) => {
   if (token && auth) {
     config.headers["x-access-token"] = token;
   }
-  API.post("/api/home", config)
+  API.get("/api/home", config)
     .then((response) => {
       dispatch({
         type: UserActionTypes.USER_LOADED,
@@ -20,7 +20,6 @@ export const loadUser = () => (dispatch, getState) => {
       });
     })
     .catch((err) => {
-      console.log("error");
       console.log(err);
       dispatch({
         type: UserActionTypes.USER_LOADING_FAIL
@@ -31,8 +30,7 @@ export const loadUser = () => (dispatch, getState) => {
 export const loginUser =
   ({ username, password }) =>
   (dispatch) => {
-    console.log("Loggin in");
-    let config = {
+    const config = {
       headers: {
         "Content-type": "application/json"
       }

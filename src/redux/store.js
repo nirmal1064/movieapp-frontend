@@ -1,14 +1,13 @@
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
+import { loadFromStorage, saveToStorage } from "./localStorageAPI";
 import rootReducer from "./reducers";
-
-const initialState = {};
 
 const middleWare = [thunk];
 
 const store = createStore(
   rootReducer,
-  initialState,
+  loadFromStorage(),
   compose(
     applyMiddleware(...middleWare),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
@@ -16,7 +15,7 @@ const store = createStore(
 );
 
 store.subscribe(() => {
-  localStorage.setItem("user", JSON.stringify(store.getState().user));
+  saveToStorage(store.getState());
 });
 
 export default store;
