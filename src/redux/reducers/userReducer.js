@@ -1,6 +1,18 @@
 import { UserActionTypes } from "../constants/userActionTypes";
 
-export const userReducer = (state = {}, { type, payload }) => {
+const initialState = {
+  id: null,
+  auth: false,
+  token: null,
+  username: null,
+  isLoading: false
+};
+
+const persistedState = localStorage.getItem("user")
+  ? JSON.parse(localStorage.getItem("user"))
+  : initialState;
+
+export const userReducer = (state = persistedState, { type, payload }) => {
   switch (type) {
     case UserActionTypes.USER_LOADING:
       return {
@@ -10,7 +22,6 @@ export const userReducer = (state = {}, { type, payload }) => {
     case UserActionTypes.USER_LOADED:
       return {
         ...state,
-        ...payload,
         isLoading: false
       };
     case UserActionTypes.LOGIN_SUCCESS:

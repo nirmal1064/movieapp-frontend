@@ -1,0 +1,17 @@
+.container .row {
+    padding-top: 0.5rem;
+}
+
+.card {
+    margin-bottom: 0.5rem;
+    margin-right: 0.2rem;
+}
+
+.movie-card {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card-container {
+    margin-left: 1rem;
+}

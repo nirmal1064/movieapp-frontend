@@ -1,12 +1,4 @@
-const initialState = {
-  user: {
-    id: null,
-    auth: false,
-    token: null,
-    username: null,
-    isLoading: false
-  }
-};
+const initialState = {};
 
 export const loadFromStorage = () => {
   return localStorage.getItem("user")
@@ -20,4 +12,10 @@ export const saveToStorage = (state) => {
   } catch (error) {
     console.log(error);
   }
+};
+
+export const getToken = () => {
+  return localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user")).token
+    : null;
 };

@@ -6,6 +6,8 @@ import "./App.css";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import Login from "./components/Login";
+import Movie from "./components/movie/Movie";
+import Watched from "./components/movie/Watched";
 import Register from "./components/Register";
 import { loadUser } from "./redux/actions/userActions";
 import store from "./redux/store";
@@ -21,9 +23,11 @@ const App = () => {
         <Header />
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route path="/movies" component={Movie} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
-          <Route path="/Home" component={Home} />
+          <Route exact path="/Home" component={Home} />
+          <Route exact path="/watched" component={Watched} />
         </Switch>
       </Router>
     </Provider>
