@@ -10,10 +10,12 @@ import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import { loadUser } from "./redux/actions/userActions";
 import store from "./redux/store";
+import { loadMovies } from "./redux/actions/movieActions";
 
 const App = () => {
   useEffect(() => {
     store.dispatch(loadUser());
+    store.dispatch(loadMovies());
   }, []);
 
   return (

@@ -17,6 +17,16 @@ export const movieReducer = (state = initialState, { type, payload }) => {
         ...state,
         watchList: payload
       };
+    case UserActionTypes.GET_WATCHED_FAIL:
+      return {
+        ...state,
+        watched: []
+      };
+    case UserActionTypes.GET_WATCHLIST_FAIL:
+      return {
+        ...state,
+        watchList: []
+      };
     default:
       return state;
   }
