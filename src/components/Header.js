@@ -1,9 +1,16 @@
 import React from "react";
-import { Nav, Navbar, Container } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { Button, Container, Nav, Navbar } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../redux/actions/userActions";
 
 const Header = () => {
   const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const handleLogout = (e) => {
+    e.preventDefault();
+    dispatch(logout());
+  };
+
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
@@ -16,6 +23,7 @@ const Header = () => {
             {user.auth && <Nav.Link href="/watched">Watched</Nav.Link>}
             {user.auth && <Nav.Link href="/watchlist">Watchlist</Nav.Link>}
           </Nav>
+          <Button onClick={handleLogout}>Logout</Button>
         </Navbar.Collapse>
       </Container>
     </Navbar>

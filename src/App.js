@@ -5,9 +5,9 @@ import "./App.css";
 import Header from "./components/Header";
 import Movie from "./components/movie/Movie";
 import Watched from "./components/movie/Watched";
-import Home from "./components/pages/Home";
-import Login from "./components/pages/Login";
-import Register from "./components/pages/Register";
+import Home from "./components/auth/Home";
+import Login from "./components/auth/Login";
+import Register from "./components/auth/Register";
 import { loadUser } from "./redux/actions/userActions";
 import store from "./redux/store";
 

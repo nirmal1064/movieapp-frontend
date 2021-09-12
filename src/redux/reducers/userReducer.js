@@ -19,19 +19,22 @@ export const userReducer = (state = persistedState, { type, payload }) => {
     case UserActionTypes.USER_LOADING:
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
+        errMsg: ""
       };
     case UserActionTypes.USER_LOADED:
       return {
         ...state,
-        isLoading: false
+        isLoading: false,
+        errMsg: ""
       };
     case UserActionTypes.LOGIN_SUCCESS:
     case UserActionTypes.REGISTER_SUCCESS:
       return {
         ...state,
         ...payload,
-        isLoading: false
+        isLoading: false,
+        errMsg: ""
       };
     case UserActionTypes.REGISTER_FAIL:
     case UserActionTypes.LOGOUT:
