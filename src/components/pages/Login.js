@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Alert, Button, Card, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { loginUser } from "../redux/actions/userActions";
+import { loginUser } from "../../redux/actions/userActions";
 
 const Login = () => {
   const [username, setUsername] = useState("");

@@ -3,11 +3,11 @@ import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header";
-import Home from "./components/Home";
-import Login from "./components/Login";
 import Movie from "./components/movie/Movie";
 import Watched from "./components/movie/Watched";
-import Register from "./components/Register";
+import Home from "./components/pages/Home";
+import Login from "./components/pages/Login";
+import Register from "./components/pages/Register";
 import { loadUser } from "./redux/actions/userActions";
 import store from "./redux/store";
 

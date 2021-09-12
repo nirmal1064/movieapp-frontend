@@ -6,7 +6,7 @@ const Home = () => {
   if (!user.auth) {
     return <Redirect to="/login" />;
   }
-  return <div>Home Component</div>;
+  return <div className="text-center mb-4">Welcome Home {user.name}</div>;
 };
 
 export default Home;

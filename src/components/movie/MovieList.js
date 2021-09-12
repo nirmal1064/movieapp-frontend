@@ -14,7 +14,7 @@ const MovieList = (props) => {
   };
 
   return (
-    <div className="movie-card">
+    <div className="d-flex flex-wrap justify-content-center">
       {"\n"}
       {props.movies.map((movie) => (
         <>

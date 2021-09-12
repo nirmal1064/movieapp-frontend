@@ -5,6 +5,7 @@ const initialState = {
   auth: false,
   token: null,
   username: null,
+  name: null,
   isLoading: false,
   errMsg: ""
 };
@@ -40,17 +41,13 @@ export const userReducer = (state = persistedState, { type, payload }) => {
         id: null,
         auth: false,
         username: null,
+        name: null,
         token: null,
         isLoading: false
       };
     case UserActionTypes.LOGIN_FAIL:
       return {
         ...state,
-        id: null,
-        auth: false,
-        username: null,
-        token: null,
-        isLoading: false,
         errMsg: payload.msg
       };
     default:
