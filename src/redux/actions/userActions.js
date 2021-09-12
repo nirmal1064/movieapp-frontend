@@ -8,8 +8,9 @@ export const loadUser = () => (dispatch, getState) => {
       dispatch({ type: UserActionTypes.USER_LOADED });
     })
     .catch((err) => {
-      console.log(err);
-      dispatch({ type: UserActionTypes.USER_LOADING_FAIL });
+      dispatch({
+        type: UserActionTypes.USER_LOADING_FAIL
+      });
     });
 };
 
@@ -26,6 +27,9 @@ export const loginUser =
         });
       })
       .catch((err) => {
-        console.log(err);
+        dispatch({
+          type: UserActionTypes.LOGIN_FAIL,
+          payload: err.response.data
+        });
       });
   };

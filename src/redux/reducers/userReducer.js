@@ -5,7 +5,8 @@ const initialState = {
   auth: false,
   token: null,
   username: null,
-  isLoading: false
+  isLoading: false,
+  errMsg: ""
 };
 
 const persistedState = localStorage.getItem("user")
@@ -31,7 +32,6 @@ export const userReducer = (state = persistedState, { type, payload }) => {
         ...payload,
         isLoading: false
       };
-    case UserActionTypes.LOGIN_FAIL:
     case UserActionTypes.REGISTER_FAIL:
     case UserActionTypes.LOGOUT:
     case UserActionTypes.USER_LOADING_FAIL:
@@ -42,6 +42,16 @@ export const userReducer = (state = persistedState, { type, payload }) => {
         username: null,
         token: null,
         isLoading: false
+      };
+    case UserActionTypes.LOGIN_FAIL:
+      return {
+        ...state,
+        id: null,
+        auth: false,
+        username: null,
+        token: null,
+        isLoading: false,
+        errMsg: payload.msg
       };
     default:
       return state;
