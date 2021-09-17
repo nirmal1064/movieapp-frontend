@@ -37,4 +37,5 @@ export const loginUser =
 export const logout = () => (dispatch) => {
   localStorage.removeItem("user");
   dispatch({ type: UserActionTypes.LOGOUT });
+  dispatch({ type: UserActionTypes.CLEAR_MOVIES });
 };

@@ -4,12 +4,11 @@ import { Search } from "react-bootstrap-icons";
 import { useDispatch } from "react-redux";
 import { searchForMovies } from "../redux/actions/movieActions";
 
-const SearchBar = (props) => {
+const SearchBar = () => {
   const [searchValue, setSearchValue] = useState("");
   const dispatch = useDispatch();
 
   const submitSearch = () => {
-    console.log(searchValue);
     if (searchValue.length > 2) {
       dispatch(searchForMovies({ s: searchValue }));
     }

@@ -42,21 +42,21 @@ const MovieList = (props) => {
               className="btn btn-theme float-left m-auto"
               variant="outline-success"
               onClick={
-                props.watched
+                props.type === "watched"
                   ? () => removeFromWatched(movie._id || movie.imdbID)
                   : () => addToWatched(movie._id || movie.imdbID)
               }>
-              {props.watched ? "Remove" : "Watched?"}
+              {props.type === "watched" ? "Remove" : "Watched?"}
             </Button>{" "}
             <Button
               className="btn btn-theme float-right"
               variant="outline-success"
               onClick={
-                props.watchlist
+                props.type === "watchlist"
                   ? () => removeFromWatchList(movie._id || movie.imdbID)
                   : () => addToWatchList(movie._id || movie.imdbID)
               }>
-              {props.watchlist ? "Remove" : "Watchlist"}
+              {props.type === "watchlist" ? "Remove" : "Watchlist"}
             </Button>
           </Card.Footer>
         </Card>

@@ -23,7 +23,7 @@ const Login = () => {
 
   return (
     <>
-      <Card>
+      <Card className="login-card">
         <Card.Body>
           <h2 className="text-center mb-4">Log In</h2>
           {user.errMsg && <Alert variant="danger">{user.errMsg}</Alert>}

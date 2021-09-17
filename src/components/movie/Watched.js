@@ -13,7 +13,7 @@ const Watched = () => {
 
   return (
     <div className="container">
-      <MovieList movies={watchedMovies} watched="true" />
+      <MovieList movies={watchedMovies} type="watched" />
     </div>
   );
 };

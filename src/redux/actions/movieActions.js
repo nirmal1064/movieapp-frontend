@@ -4,7 +4,6 @@ import { UserActionTypes } from "../constants/userActionTypes";
 export const searchForMovies =
   ({ s }) =>
   async (dispatch, getState) => {
-    console.log(`Search value ${s}`);
     const { token, auth } = getState().user;
     const userId = getState().user.id;
     try {

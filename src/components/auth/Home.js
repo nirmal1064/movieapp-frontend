@@ -15,7 +15,7 @@ const Home = () => {
     <div className="text-center mb-4">
       <SearchBar />
       {searchedMovies.length > 0 ? (
-        <MovieList movies={searchedMovies} />
+        <MovieList movies={searchedMovies} type="search" />
       ) : (
         <p>Search a Movie</p>
       )}
