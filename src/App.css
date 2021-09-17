@@ -15,3 +15,10 @@
 .card-container {
     margin-left: 1rem;
 }
+
+.searchbar {
+    max-width: 400px;
+    text-align: center;
+    /* padding: 20px; */
+    margin: 10px auto;
+}

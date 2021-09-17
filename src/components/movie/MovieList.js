@@ -29,7 +29,7 @@ const MovieList = (props) => {
   return (
     <div className="d-flex flex-wrap justify-content-center">
       {props.movies.map((movie) => (
-        <Card key={movie._id} style={{ width: "16rem" }}>
+        <Card key={movie._id || movie.imdbID} style={{ width: "16rem" }}>
           <Card.Img variant="top" src={movie.Poster} />
           <Card.Body>
             <Card.Title className="text-center">
@@ -43,8 +43,8 @@ const MovieList = (props) => {
               variant="outline-success"
               onClick={
                 props.watched
-                  ? () => removeFromWatched(movie._id)
-                  : () => addToWatched(movie._id)
+                  ? () => removeFromWatched(movie._id || movie.imdbID)
+                  : () => addToWatched(movie._id || movie.imdbID)
               }>
               {props.watched ? "Remove" : "Watched?"}
             </Button>{" "}
@@ -53,8 +53,8 @@ const MovieList = (props) => {
               variant="outline-success"
               onClick={
                 props.watchlist
-                  ? () => removeFromWatchList(movie._id)
-                  : () => addToWatchList(movie._id)
+                  ? () => removeFromWatchList(movie._id || movie.imdbID)
+                  : () => addToWatchList(movie._id || movie.imdbID)
               }>
               {props.watchlist ? "Remove" : "Watchlist"}
             </Button>

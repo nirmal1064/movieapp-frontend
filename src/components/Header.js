@@ -20,10 +20,11 @@ const Header = () => {
           <Nav className="me-auto">
             {!user.auth && <Nav.Link href="/login">Login</Nav.Link>}
             {!user.auth && <Nav.Link href="/register">Register</Nav.Link>}
+            {user.auth && <Nav.Link href="/home">Home</Nav.Link>}
             {user.auth && <Nav.Link href="/watched">Watched</Nav.Link>}
             {user.auth && <Nav.Link href="/watchlist">Watchlist</Nav.Link>}
           </Nav>
-          <Button onClick={handleLogout}>Logout</Button>
+          {user.auth && <Button onClick={handleLogout}>Logout</Button>}
         </Navbar.Collapse>
       </Container>
     </Navbar>

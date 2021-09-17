@@ -1,6 +1,25 @@
 import API from "../../api";
 import { UserActionTypes } from "../constants/userActionTypes";
 
+export const searchForMovies =
+  ({ s }) =>
+  async (dispatch, getState) => {
+    console.log(`Search value ${s}`);
+    const { token, auth } = getState().user;
+    const userId = getState().user.id;
+    try {
+      if (userId && token && auth) {
+        const response = await API.get(`/movie/search/`, { params: { s } });
+        dispatch({
+          type: UserActionTypes.SET_SEARCH_MOVIES,
+          payload: response.data
+        });
+      }
+    } catch (error) {
+      dispatch({ type: UserActionTypes.SET_SEARCH_MOVIES_FAIL });
+    }
+  };
+
 export const getWatched = () => async (dispatch, getState) => {
   dispatch({ type: UserActionTypes.MOVIE_LOADING });
   const { token, auth } = getState().user;
