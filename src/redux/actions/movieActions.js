@@ -39,3 +39,41 @@ export const getWatchList = () => async (dispatch, getState) => {
     dispatch({ type: UserActionTypes.GET_WATCHLIST_FAIL });
   }
 };
+
+export const removeFromWatched =
+  ({ movieId }) =>
+  async (dispatch, getState) => {
+    const { token, auth } = getState().user;
+    const userId = getState().user.id;
+    try {
+      const body = JSON.stringify({ userId, movieId });
+      if (userId && token && auth) {
+        const response = await API.post(`/watched/remove`, body);
+        dispatch({
+          type: UserActionTypes.REMOVE_WATCHED,
+          payload: response.data
+        });
+      }
+    } catch (error) {
+      dispatch({ type: UserActionTypes.REMOVE_WATCHED_FAIL });
+    }
+  };
+
+export const removeFromWatchList =
+  ({ movieId }) =>
+  async (dispatch, getState) => {
+    const { token, auth } = getState().user;
+    const userId = getState().user.id;
+    try {
+      const body = JSON.stringify({ userId, movieId });
+      if (userId && token && auth) {
+        const response = await API.post(`/watchlist/remove`, body);
+        dispatch({
+          type: UserActionTypes.REMOVE_WATCHLIST,
+          payload: response.data
+        });
+      }
+    } catch (error) {
+      dispatch({ type: UserActionTypes.REMOVE_WATCHLIST_FAIL });
+    }
+  };

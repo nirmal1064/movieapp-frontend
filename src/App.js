@@ -11,6 +11,7 @@ import Register from "./components/auth/Register";
 import { loadUser } from "./redux/actions/userActions";
 import store from "./redux/store";
 import { loadMovies } from "./redux/actions/movieActions";
+import WatchList from "./components/movie/WatchList";
 
 const App = () => {
   useEffect(() => {
@@ -29,6 +30,7 @@ const App = () => {
           <Route path="/register" component={Register} />
           <Route exact path="/Home" component={Home} />
           <Route exact path="/watched" component={Watched} />
+          <Route exact path="/watchlist" component={WatchList} />
         </Switch>
       </Router>
     </Provider>

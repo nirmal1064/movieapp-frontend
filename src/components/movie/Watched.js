@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getWatched } from "../../redux/actions/movieActions";
+import MovieList from "./MovieList";
 
 const Watched = () => {
   const watchedMovies = useSelector((state) => state.movie.watched);
@@ -10,7 +11,11 @@ const Watched = () => {
     dispatch(getWatched());
   }, [dispatch]);
 
-  return <div>{watchedMovies.length}</div>;
+  return (
+    <div className="container">
+      <MovieList movies={watchedMovies} watched="true" />
+    </div>
+  );
 };
 
 export default Watched;
