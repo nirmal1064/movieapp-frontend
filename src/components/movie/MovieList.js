@@ -1,27 +1,33 @@
-import React from "react";
+import { useDispatch } from "react-redux";
 import { Button, Card } from "react-bootstrap";
+import {
+  addMovieToWatched,
+  addMovieToWatchList,
+  removeMovieFromWatched,
+  removeMovieFromWatchList
+} from "../../redux/actions/movieActions";
 
 const MovieList = (props) => {
+  const dispatch = useDispatch();
+
   const addToWatched = (movieId) => {
-    console.log("addToWatched");
-    console.log(movieId);
+    dispatch(addMovieToWatched({ movieId }));
   };
+
   const addToWatchList = (movieId) => {
-    console.log("addToWatchList");
-    console.log(movieId);
+    dispatch(addMovieToWatchList({ movieId }));
   };
+
   const removeFromWatched = (movieId) => {
-    console.log("removeFromWatched");
-    console.log(movieId);
+    dispatch(removeMovieFromWatched({ movieId }));
   };
+
   const removeFromWatchList = (movieId) => {
-    console.log("removeFromWatchList");
-    console.log(movieId);
+    dispatch(removeMovieFromWatchList({ movieId }));
   };
 
   return (
     <div className="d-flex flex-wrap justify-content-center">
-      {"\n"}
       {props.movies.map((movie) => (
         <Card key={movie._id} style={{ width: "16rem" }}>
           <Card.Img variant="top" src={movie.Poster} />

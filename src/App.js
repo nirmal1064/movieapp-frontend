@@ -2,21 +2,19 @@ import { useEffect } from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
-import Header from "./components/Header";
-import Movie from "./components/movie/Movie";
-import Watched from "./components/movie/Watched";
 import Home from "./components/auth/Home";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
+import Header from "./components/Header";
+import Movie from "./components/movie/Movie";
+import Watched from "./components/movie/Watched";
+import WatchList from "./components/movie/WatchList";
 import { loadUser } from "./redux/actions/userActions";
 import store from "./redux/store";
-import { loadMovies } from "./redux/actions/movieActions";
-import WatchList from "./components/movie/WatchList";
 
 const App = () => {
   useEffect(() => {
     store.dispatch(loadUser());
-    store.dispatch(loadMovies());
   }, []);
 
   return (

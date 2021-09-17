@@ -37,8 +37,20 @@ export const movieReducer = (state = initialState, { type, payload }) => {
         ...state,
         watchList: state.watchList.filter((movie) => movie._id !== payload)
       };
+    case UserActionTypes.ADD_WATCHED:
+      return {
+        ...state,
+        watched: [...state.watched, payload]
+      };
+    case UserActionTypes.ADD_WATCHLIST:
+      return {
+        ...state,
+        watchList: [...state.watchList, payload]
+      };
     case UserActionTypes.REMOVE_WATCHED_FAIL:
     case UserActionTypes.REMOVE_WATCHLIST_FAIL:
+    case UserActionTypes.ADD_WATCHED_FAIL:
+    case UserActionTypes.ADD_WATCHLIST_FAIL:
       return {
         ...state
       };
