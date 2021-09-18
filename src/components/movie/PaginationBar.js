@@ -5,8 +5,7 @@ import { searchForMovies } from "../../redux/actions/movieActions";
 const PaginationBar = () => {
   const search = useSelector((state) => state.movie.search);
   const dispatch = useDispatch();
-  const { currentPage, searchValue } = search;
-  const totalPages = 4;
+  const { currentPage, searchValue, totalPages } = search;
   let pages = [];
 
   const pageChange = (pageNumber) => {
@@ -15,16 +14,6 @@ const PaginationBar = () => {
 
   if (totalPages <= 5) {
     pages = Array.from(Array(totalPages + 1).keys()).slice(1);
-    // for (let i = 1; i <= totalPages; i++) {
-    //   pages.push(
-    //     <Pagination.Item
-    //       key={i}
-    //       active={i === currentPage}
-    //       onClick={currentPage === i ? () => {} : () => pageChange(i)}>
-    //       {i}
-    //     </Pagination.Item>
-    //   );
-    // }
   }
 
   const createPagination = (pageNumbers) => {
