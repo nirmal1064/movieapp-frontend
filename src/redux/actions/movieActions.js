@@ -2,16 +2,21 @@ import API from "../../api";
 import { UserActionTypes } from "../constants/userActionTypes";
 
 export const searchForMovies =
-  ({ s }) =>
+  ({ s, p }) =>
   async (dispatch, getState) => {
     const { token, auth } = getState().user;
     const userId = getState().user.id;
     try {
       if (userId && token && auth) {
-        const response = await API.get(`/movie/search/`, { params: { s } });
+        const response = await API.get(`/movie/search/`, { params: { s, p } });
+        let data = response.data;
+        if (Object.keys(data).length !== 0) {
+          const totalPages = Math.ceil(data.totalResults / 10);
+          data = { ...data, totalPages };
+        }
         dispatch({
           type: UserActionTypes.SET_SEARCH_MOVIES,
-          payload: response.data
+          payload: data
         });
       }
     } catch (error) {

@@ -3,7 +3,7 @@ import { UserActionTypes } from "../constants/userActionTypes";
 const initialState = {
   watched: [],
   watchList: [],
-  search: []
+  search: {}
 };
 
 export const movieReducer = (state = initialState, { type, payload }) => {
@@ -39,7 +39,7 @@ export const movieReducer = (state = initialState, { type, payload }) => {
       return { ...state, search: payload };
     case UserActionTypes.CLEAR_MOVIES:
     case UserActionTypes.SET_SEARCH_MOVIES_FAIL:
-      return { ...state, search: [] };
+      return { ...state, search: {} };
     default:
       return state;
   }

@@ -5,7 +5,8 @@ import SearchBar from "../SearchBar";
 
 const Home = () => {
   const user = useSelector((state) => state.user);
-  const searchedMovies = useSelector((state) => state.movie.search);
+  const search = useSelector((state) => state.movie.search);
+  const searchedMovies = search.Search || [];
 
   if (!user.auth && !user.token) {
     return <Redirect to="/login" />;
