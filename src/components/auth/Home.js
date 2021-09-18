@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import MovieList from "../movie/MovieList";
+import PaginationBar from "../movie/PaginationBar";
 import SearchBar from "../SearchBar";
 
 const Home = () => {
@@ -20,6 +21,7 @@ const Home = () => {
       ) : (
         <p>Search a Movie</p>
       )}
+      {searchedMovies.length > 0 && <PaginationBar />}
     </div>
   );
 };

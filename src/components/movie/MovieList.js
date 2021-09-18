@@ -29,7 +29,7 @@ const MovieList = (props) => {
   return (
     <div className="d-flex flex-wrap justify-content-center">
       {props.movies.map((movie) => (
-        <Card key={movie._id || movie.imdbID} style={{ width: "16rem" }}>
+        <Card key={movie._id || movie.imdbID} style={{ width: "18rem" }}>
           <Card.Img variant="top" src={movie.Poster} />
           <Card.Body>
             <Card.Title className="text-center">

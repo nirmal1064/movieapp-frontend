@@ -12,7 +12,7 @@ export const searchForMovies =
         let data = response.data;
         if (Object.keys(data).length !== 0) {
           const totalPages = Math.ceil(data.totalResults / 10);
-          data = { ...data, totalPages };
+          data = { ...data, totalPages, currentPage: p, searchValue: s };
         }
         dispatch({
           type: UserActionTypes.SET_SEARCH_MOVIES,

@@ -10,7 +10,7 @@ const SearchBar = () => {
 
   const submitSearch = () => {
     if (searchValue.length > 2) {
-      dispatch(searchForMovies({ s: searchValue, p: 2 }));
+      dispatch(searchForMovies({ s: searchValue, p: 1 }));
     }
   };
 
