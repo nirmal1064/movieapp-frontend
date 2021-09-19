@@ -8,19 +8,29 @@ const Home = () => {
   const user = useSelector((state) => state.user);
   const search = useSelector((state) => state.movie.search);
   const searchedMovies = search.Search || [];
+  const cSearch = search.searchValue || "";
+  const searching = search.searching;
 
   if (!user.auth && !user.token) {
     return <Redirect to="/login" />;
   }
 
+  const renderMovies = () => {
+    if (searchedMovies.length > 0) {
+      return <MovieList movies={searchedMovies} type="search" />;
+    } else if (searching) {
+      return <h4>Searching... Please wait</h4>;
+    } else if (cSearch.length > 0) {
+      return <h4>No Results. Try Searching again</h4>;
+    } else {
+      return <h4>Search for a Movie or Series</h4>;
+    }
+  };
+
   return (
-    <div className="text-center mb-4">
+    <div className="text-center mt-2">
       <SearchBar />
-      {searchedMovies.length > 0 ? (
-        <MovieList movies={searchedMovies} type="search" />
-      ) : (
-        <p>Search a Movie</p>
-      )}
+      {renderMovies()}
       {searchedMovies.length > 0 && <PaginationBar />}
     </div>
   );

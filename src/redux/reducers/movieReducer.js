@@ -35,6 +35,8 @@ export const movieReducer = (state = initialState, { type, payload }) => {
     case UserActionTypes.ADD_WATCHED_FAIL:
     case UserActionTypes.ADD_WATCHLIST_FAIL:
       return { ...state };
+    case UserActionTypes.SEARCHING_MOVIES:
+      return { ...state, search: { ...state.search, searching: true } };
     case UserActionTypes.SET_SEARCH_MOVIES:
       return { ...state, search: payload };
     case UserActionTypes.CLEAR_MOVIES:

@@ -7,12 +7,24 @@ export const searchForMovies =
     const { token, auth } = getState().user;
     const userId = getState().user.id;
     try {
+      if (p === 1) {
+        dispatch({ type: UserActionTypes.CLEAR_MOVIES });
+      }
+      dispatch({ type: UserActionTypes.SEARCHING_MOVIES });
       if (userId && token && auth) {
         const response = await API.get(`/movie/search/`, { params: { s, p } });
         let data = response.data;
         if (Object.keys(data).length !== 0) {
           const totalPages = Math.ceil(data.totalResults / 10);
-          data = { ...data, totalPages, currentPage: p, searchValue: s };
+          data = {
+            ...data,
+            totalPages,
+            currentPage: p,
+            searchValue: s,
+            searching: false
+          };
+        } else {
+          data = { ...data, searchValue: s };
         }
         dispatch({
           type: UserActionTypes.SET_SEARCH_MOVIES,
