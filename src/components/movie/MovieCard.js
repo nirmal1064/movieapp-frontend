@@ -1,5 +1,5 @@
 import { Button, Card } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   addMovieToWatched,
   addMovieToWatchList,
@@ -9,6 +9,8 @@ import {
 
 const MovieCard = ({ movie, type }) => {
   const dispatch = useDispatch();
+  const watchListMovies = useSelector((state) => state.movie.watchList);
+  const watchedMovies = useSelector((state) => state.movie.watched);
 
   const addToWatched = (movieId) => {
     dispatch(addMovieToWatched({ movieId }));
@@ -26,11 +28,47 @@ const MovieCard = ({ movie, type }) => {
     dispatch(removeMovieFromWatchList({ movieId }));
   };
 
-  const isWatched = () => {
-    if (type === "watched") {
+  const isMovieWatched = () => {
+    return watchedMovies.some(
+      (watchedMovie) => watchedMovie._id === movie.imdbID
+    );
+  };
+
+  const isMovieWatchlist = () => {
+    watchListMovies.some(
+      (watchListMovie) => watchListMovie._id === movie.imdbID
+    );
+  };
+
+  const isWatchedButton = () => {
+    if (type === "watched" || (type === "search" && isMovieWatched())) {
       removeFromWatched(movie._id || movie.imdbID);
     } else {
       addToWatched(movie._id || movie.imdbID);
+    }
+  };
+
+  const isWatchListButton = () => {
+    if (type === "watchlist" || (type === "search" && isMovieWatchlist())) {
+      removeFromWatchList(movie._id || movie.imdbID);
+    } else {
+      addToWatchList(movie._id || movie.imdbID);
+    }
+  };
+
+  const getWatchedButtonText = () => {
+    if (type === "watched" || (type === "search" && isMovieWatched())) {
+      return "Remove";
+    } else {
+      return "Watched?";
+    }
+  };
+
+  const getWatchListButtonText = () => {
+    if (type === "watchlist" || (type === "search" && isMovieWatchlist())) {
+      return "Remove";
+    } else {
+      return "Watchlist";
     }
   };
 
@@ -47,18 +85,14 @@ const MovieCard = ({ movie, type }) => {
         <Button
           className="btn btn-theme float-left m-auto"
           variant="outline-success"
-          onClick={isWatched}>
-          {type === "watched" ? "Remove" : "Watched?"}
+          onClick={isWatchedButton}>
+          {getWatchedButtonText()}
         </Button>{" "}
         <Button
           className="btn btn-theme float-right"
           variant="outline-success"
-          onClick={
-            type === "watchlist"
-              ? () => removeFromWatchList(movie._id || movie.imdbID)
-              : () => addToWatchList(movie._id || movie.imdbID)
-          }>
-          {type === "watchlist" ? "Remove" : "Watchlist"}
+          onClick={isWatchListButton}>
+          {getWatchListButtonText()}
         </Button>
       </Card.Footer>
     </Card>

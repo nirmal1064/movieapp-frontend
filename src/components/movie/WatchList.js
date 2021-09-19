@@ -13,7 +13,13 @@ const WatchList = () => {
 
   return (
     <div>
-      <MovieList movies={watchListMovies} type="watchlist" />
+      {watchListMovies.length > 0 ? (
+        <MovieList movies={watchListMovies} type="watchlist" />
+      ) : (
+        <h2 className="text-center mt-5">
+          You Have Not Added any movies to your watchlist
+        </h2>
+      )}
     </div>
   );
 };

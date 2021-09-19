@@ -13,7 +13,11 @@ const Watched = () => {
 
   return (
     <div className="container">
-      <MovieList movies={watchedMovies} type="watched" />
+      {watchedMovies.length > 0 ? (
+        <MovieList movies={watchedMovies} type="watched" />
+      ) : (
+        <h2 className="text-center mt-5">You have not watched any movies</h2>
+      )}
     </div>
   );
 };
