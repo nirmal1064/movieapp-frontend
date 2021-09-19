@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { logout } from "../redux/actions/userActions";
 
 const Header = () => {
@@ -18,11 +19,31 @@ const Header = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            {!user.auth && <Nav.Link href="/login">Login</Nav.Link>}
-            {!user.auth && <Nav.Link href="/register">Register</Nav.Link>}
-            {user.auth && <Nav.Link href="/home">Home</Nav.Link>}
-            {user.auth && <Nav.Link href="/watched">Watched</Nav.Link>}
-            {user.auth && <Nav.Link href="/watchlist">Watchlist</Nav.Link>}
+            {!user.auth && (
+              <Nav.Link as={Link} to="/login">
+                Login
+              </Nav.Link>
+            )}
+            {!user.auth && (
+              <Nav.Link as={Link} to="/register">
+                Register
+              </Nav.Link>
+            )}
+            {user.auth && (
+              <Nav.Link as={Link} to="/">
+                Home
+              </Nav.Link>
+            )}
+            {user.auth && (
+              <Nav.Link as={Link} to="/watched">
+                Watched
+              </Nav.Link>
+            )}
+            {user.auth && (
+              <Nav.Link as={Link} to="/watchlist">
+                Watchlist
+              </Nav.Link>
+            )}
           </Nav>
           {user.auth && <Button onClick={handleLogout}>Logout</Button>}
         </Navbar.Collapse>
