@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import Home from "./components/auth/Home";
 import Login from "./components/auth/Login";
+import PrivateRoute from "./components/auth/PrivateRoute";
 import Register from "./components/auth/Register";
 import Header from "./components/Header";
 import Movie from "./components/movie/Movie";
@@ -22,13 +23,13 @@ const App = () => {
       <Router>
         <Header />
         <Switch>
-          <Route exact path="/" component={Home} />
+          <PrivateRoute exact path="/" component={Home} />
           <Route path="/movies" component={Movie} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
-          <Route exact path="/Home" component={Home} />
-          <Route exact path="/watched" component={Watched} />
-          <Route exact path="/watchlist" component={WatchList} />
+          <PrivateRoute exact path="/Home" component={Home} />
+          <PrivateRoute exact path="/watched" component={Watched} />
+          <PrivateRoute exact path="/watchlist" component={WatchList} />
         </Switch>
       </Router>
     </Provider>
