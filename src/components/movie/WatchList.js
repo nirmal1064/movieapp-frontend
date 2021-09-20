@@ -4,24 +4,29 @@ import { getWatchList } from "../../redux/actions/movieActions";
 import MovieList from "./MovieList";
 
 const WatchList = () => {
-  const watchListMovies = useSelector((state) => state.movie.watchList);
+  const movie = useSelector((state) => state.movie);
+  const { watchList, loading } = movie;
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getWatchList());
   }, [dispatch]);
 
-  return (
-    <div>
-      {watchListMovies.length > 0 ? (
-        <MovieList movies={watchListMovies} type="watchlist" />
-      ) : (
-        <h2 className="text-center mt-5">
+  const renderWatchlist = () => {
+    if (watchList.length > 0) {
+      return <MovieList movies={watchList} type="watchlist" />;
+    } else if (loading) {
+      return <h4 className="text-center mt-5">Loading... Please wait</h4>;
+    } else {
+      return (
+        <h4 className="text-center mt-5">
           You Have Not Added any movies to your watchlist
-        </h2>
-      )}
-    </div>
-  );
+        </h4>
+      );
+    }
+  };
+
+  return <div>{renderWatchlist()}</div>;
 };
 
 export default WatchList;

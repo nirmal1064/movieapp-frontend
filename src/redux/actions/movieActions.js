@@ -8,9 +8,9 @@ export const searchForMovies =
     const userId = getState().user.id;
     try {
       if (p === 1) {
-        dispatch({ type: UserActionTypes.CLEAR_MOVIES });
+        dispatch({ type: UserActionTypes.CLEAR_SEARCH });
       }
-      dispatch({ type: UserActionTypes.SEARCHING_MOVIES });
+      dispatch({ type: UserActionTypes.MOVIE_LOADING });
       if (userId && token && auth) {
         const response = await API.get(`/movie/search/`, { params: { s, p } });
         let data = response.data;

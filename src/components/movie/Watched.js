@@ -4,22 +4,27 @@ import { getWatched } from "../../redux/actions/movieActions";
 import MovieList from "./MovieList";
 
 const Watched = () => {
-  const watchedMovies = useSelector((state) => state.movie.watched);
+  const movie = useSelector((state) => state.movie);
+  const { watched, loading } = movie;
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getWatched());
   }, [dispatch]);
 
-  return (
-    <div className="container">
-      {watchedMovies.length > 0 ? (
-        <MovieList movies={watchedMovies} type="watched" />
-      ) : (
-        <h2 className="text-center mt-5">You have not watched any movies</h2>
-      )}
-    </div>
-  );
+  const renderWatched = () => {
+    if (watched.length > 0) {
+      return <MovieList movies={watched} type="watched" />;
+    } else if (loading) {
+      return <h4 className="text-center mt-5">Loading... Please wait</h4>;
+    } else {
+      return (
+        <h4 className="text-center mt-5">You have not watched any movies</h4>
+      );
+    }
+  };
+
+  return <div className="container">{renderWatched()}</div>;
 };
 
 export default Watched;
