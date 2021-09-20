@@ -7,7 +7,6 @@ import Login from "./components/auth/Login";
 import PrivateRoute from "./components/auth/PrivateRoute";
 import Register from "./components/auth/Register";
 import Header from "./components/Header";
-import Movie from "./components/movie/Movie";
 import Watched from "./components/movie/Watched";
 import WatchList from "./components/movie/WatchList";
 import { loadUser } from "./redux/actions/userActions";
@@ -24,10 +23,9 @@ const App = () => {
         <Header />
         <Switch>
           <PrivateRoute exact path="/" component={Home} />
-          <Route path="/movies" component={Movie} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
-          <PrivateRoute exact path="/Home" component={Home} />
+          <PrivateRoute exact path="/home" component={Home} />
           <PrivateRoute exact path="/watched" component={Watched} />
           <PrivateRoute exact path="/watchlist" component={WatchList} />
         </Switch>
