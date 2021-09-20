@@ -42,6 +42,7 @@ export const movieReducer = (state = initialState, { type, payload }) => {
       return { ...state, search: payload, loading: false };
     case UserActionTypes.CLEAR_MOVIES:
       return initialState;
+    case UserActionTypes.CLEAR_SEARCH:
     case UserActionTypes.SET_SEARCH_MOVIES_FAIL:
       return { ...state, search: {}, loading: false };
     case UserActionTypes.MOVIE_LOADING:
