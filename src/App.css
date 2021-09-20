@@ -19,11 +19,26 @@
 .searchbar {
     max-width: 400px;
     text-align: center;
-    /* padding: 20px; */
     margin: 10px auto;
 }
 
 .login-card {
     max-width: 500px;
     margin: 10px auto;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .movie-loading {
+        animation: movie-icon-spin infinite 1s linear;
+    }
+}
+
+@keyframes movie-icon-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
