@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getWatched } from "../../redux/actions/movieActions";
+import LoadingSpinner from "../LoadingSpinner";
 import MovieList from "./MovieList";
 
 const Watched = () => {
@@ -16,7 +17,7 @@ const Watched = () => {
     if (watched.length > 0) {
       return <MovieList movies={watched} type="watched" />;
     } else if (loading) {
-      return <h4 className="text-center mt-5">Loading... Please wait</h4>;
+      return <LoadingSpinner />;
     } else {
       return (
         <h4 className="text-center mt-5">You have not watched any movies</h4>
@@ -24,7 +25,7 @@ const Watched = () => {
     }
   };
 
-  return <div className="container">{renderWatched()}</div>;
+  return <div className="text-center mt-2">{renderWatched()}</div>;
 };
 
 export default Watched;
