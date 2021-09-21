@@ -35,7 +35,7 @@ const MovieCard = ({ movie, type }) => {
   };
 
   const isMovieWatchlist = () => {
-    watchListMovies.some(
+    return watchListMovies.some(
       (watchListMovie) => watchListMovie._id === movie.imdbID
     );
   };
