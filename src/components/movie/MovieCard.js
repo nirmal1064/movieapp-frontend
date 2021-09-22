@@ -73,7 +73,7 @@ const MovieCard = ({ movie, type }) => {
   };
 
   return (
-    <Card key={movie._id || movie.imdbID} style={{ width: "18rem" }}>
+    <Card style={{ width: "18rem" }}>
       <Card.Img
         variant="top"
         src={movie.Poster}
