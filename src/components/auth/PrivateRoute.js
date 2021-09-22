@@ -3,7 +3,6 @@ import { Redirect, Route } from "react-router";
 
 const Authenticated = () => {
   const user = useSelector((state) => state.user);
-  console.log(user.auth);
   return user.auth && user.token;
 };
 
