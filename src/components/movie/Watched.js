@@ -1,13 +1,24 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getWatched } from "../../redux/actions/movieActions";
 import LoadingSpinner from "../LoadingSpinner";
+import PaginationTab from "../PaginationTab";
 import MovieList from "./MovieList";
 
 const Watched = () => {
   const movie = useSelector((state) => state.movie);
   const { watched, loading } = movie;
   const dispatch = useDispatch();
+  const [moviesPerPage] = useState(8);
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages =
+    watched.length > 0 ? Math.ceil(watched.length / moviesPerPage) : 0;
+
+  const lastIndex = currentPage * moviesPerPage;
+  const firstIndex = lastIndex - moviesPerPage;
+  const movies = watched.slice(firstIndex, lastIndex);
+
+  const pageChange = (pageNumber) => setCurrentPage(pageNumber);
 
   useEffect(() => {
     dispatch(getWatched());
@@ -15,7 +26,16 @@ const Watched = () => {
 
   const renderWatched = () => {
     if (watched.length > 0) {
-      return <MovieList movies={watched} type="watched" />;
+      return (
+        <>
+          <MovieList movies={movies} type="watched" />
+          <PaginationTab
+            currentPage={currentPage}
+            totalPages={totalPages}
+            pageChange={pageChange}
+          />
+        </>
+      );
     } else if (loading) {
       return <LoadingSpinner />;
     } else {
