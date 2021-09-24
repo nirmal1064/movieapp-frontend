@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { searchForMovies } from "../../redux/actions/movieActions";
+import { UserActionTypes } from "../../redux/constants/userActionTypes";
 import LoadingSpinner from "../LoadingSpinner";
 import MovieList from "../movie/MovieList";
 import PaginationTab from "../PaginationTab";
@@ -14,6 +15,19 @@ const Home = () => {
   const searchedMovies = search.Search || [];
   const searchValue = search.searchValue || "";
   const totalPages = search.totalPages || 0;
+
+  const pageChange = (p) => {
+    setCurrentPage(p);
+    dispatch(searchForMovies({ s: searchValue, p }));
+  };
+
+  const submitSearch = (searchInput, cSearch) => {
+    if (searchInput.length > 2 && searchInput !== cSearch) {
+      dispatch(searchForMovies({ s: searchInput, p: 1 }));
+    } else if (searchInput.length === 0) {
+      dispatch({ type: UserActionTypes.CLEAR_MOVIES });
+    }
+  };
 
   const renderMovies = () => {
     if (searchedMovies.length > 0) {
@@ -36,14 +50,9 @@ const Home = () => {
     }
   };
 
-  const pageChange = (p) => {
-    setCurrentPage(p);
-    dispatch(searchForMovies({ s: searchValue, p }));
-  };
-
   return (
     <div className="text-center mt-2">
-      <SearchBar />
+      <SearchBar submitSearch={submitSearch} />
       {renderMovies()}
     </div>
   );

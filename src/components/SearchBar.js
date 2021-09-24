@@ -1,21 +1,13 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { searchForMovies } from "../redux/actions/movieActions";
+import { useSelector } from "react-redux";
 
-const SearchBar = () => {
-  const dispatch = useDispatch();
+const SearchBar = ({ submitSearch }) => {
   const cSearch = useSelector((state) => state.movie.search.searchValue) || "";
   const [searchValue, setSearchValue] = useState(cSearch);
 
-  const submitSearch = () => {
-    if (searchValue.length > 2 && searchValue !== cSearch) {
-      dispatch(searchForMovies({ s: searchValue, p: 1 }));
-    }
-  };
-
   const checkEnterKey = (e) => {
     if (e.key === "Enter") {
-      submitSearch();
+      submitSearch(searchValue, cSearch);
     }
   };
 
