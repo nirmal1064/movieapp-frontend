@@ -1,16 +1,14 @@
 import API from "../../api";
 import { UserActionTypes } from "../constants/userActionTypes";
 
-export const loadUser = () => (dispatch, getState) => {
+export const loadUser = () => (dispatch) => {
   dispatch({ type: UserActionTypes.USER_LOADING });
   API.get("/api/home")
-    .then((response) => {
+    .then(() => {
       dispatch({ type: UserActionTypes.USER_LOADED });
     })
-    .catch((err) => {
-      dispatch({
-        type: UserActionTypes.USER_LOADING_FAIL
-      });
+    .catch(() => {
+      dispatch({ type: UserActionTypes.USER_LOADING_FAIL });
     });
 };
 
