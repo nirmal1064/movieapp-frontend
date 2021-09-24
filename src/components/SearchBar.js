@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { searchForMovies } from "../redux/actions/movieActions";
 
 const SearchBar = () => {
-  const [searchValue, setSearchValue] = useState("");
   const dispatch = useDispatch();
   const cSearch = useSelector((state) => state.movie.search.searchValue) || "";
+  const [searchValue, setSearchValue] = useState(cSearch);
 
   const submitSearch = () => {
     if (searchValue.length > 2 && searchValue !== cSearch) {
