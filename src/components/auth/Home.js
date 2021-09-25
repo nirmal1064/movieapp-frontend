@@ -44,7 +44,7 @@ const Home = () => {
     } else if (loading) {
       return <LoadingSpinner />;
     } else if (searchValue.length > 0) {
-      return <h4>No Results. Try Searching again</h4>;
+      return <h4>No Results. Try Again</h4>;
     } else {
       return <h4>Search for a Movie or Series</h4>;
     }
