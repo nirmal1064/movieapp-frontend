@@ -145,3 +145,24 @@ export const addMovieToWatchList =
       dispatch({ type: UserActionTypes.ADD_WATCHLIST_FAIL });
     }
   };
+
+export const filterWatchedMovies =
+  (searchTerm) => async (dispatch, getState) => {
+    const watchedMovies = getState().movie.watched;
+    const filteredMovies = watchedMovies.filter((movie) => {
+      return movie.Title.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+    dispatch({ type: UserActionTypes.FILTER_WATCHED, payload: filteredMovies });
+  };
+
+export const filterWatchlistMovies =
+  (searchTerm) => async (dispatch, getState) => {
+    const watchListMovies = getState().movie.watchList;
+    const filteredMovies = watchListMovies.filter((movie) => {
+      return movie.Title.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+    dispatch({
+      type: UserActionTypes.FILTER_WATCHLIST,
+      payload: filteredMovies
+    });
+  };

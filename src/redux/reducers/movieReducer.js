@@ -10,8 +10,10 @@ const initialState = {
 export const movieReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case UserActionTypes.GET_WATCHED:
+    case UserActionTypes.FILTER_WATCHED:
       return { ...state, watched: payload, loading: false };
     case UserActionTypes.GET_WATCHLIST:
+    case UserActionTypes.FILTER_WATCHLIST:
       return { ...state, watchList: payload, loading: false };
     case UserActionTypes.GET_WATCHED_FAIL:
       return { ...state, watched: [], loading: false };
