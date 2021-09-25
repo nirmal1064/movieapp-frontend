@@ -20,7 +20,6 @@ const WatchList = () => {
   const pageChange = (pageNumber) => setCurrentPage(pageNumber);
 
   useEffect(() => {
-    console.log("useEffect");
     dispatch(getWatchList());
   }, [dispatch]);
 
