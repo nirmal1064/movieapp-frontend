@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
-const SearchBar = ({ submitSearch }) => {
+const SearchBar = ({ submitSearch, type }) => {
   const cSearch = useSelector((state) => state.movie.search.searchValue) || "";
-  const [searchValue, setSearchValue] = useState(cSearch);
+  const [searchValue, setSearchValue] = useState(
+    type === "search" ? cSearch : ""
+  );
 
   const checkEnterKey = (e) => {
     if (e.key === "Enter") {
