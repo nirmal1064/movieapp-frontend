@@ -36,7 +36,7 @@ export const loginUser =
 export const logout = () => (dispatch) => {
   localStorage.removeItem("user");
   batch(() => {
-    dispatch({ type: UserActionTypes.LOGOUT });
     dispatch({ type: UserActionTypes.CLEAR_MOVIES });
+    dispatch({ type: UserActionTypes.LOGOUT });
   });
 };
