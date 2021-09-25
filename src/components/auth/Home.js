@@ -33,6 +33,11 @@ const Home = () => {
     if (searchedMovies.length > 0) {
       return (
         <>
+          <PaginationTab
+            currentPage={currentPage}
+            totalPages={totalPages}
+            pageChange={pageChange}
+          />
           <MovieList movies={searchedMovies} type="search" />
           <PaginationTab
             currentPage={currentPage}
@@ -52,7 +57,7 @@ const Home = () => {
 
   return (
     <div className="text-center mt-2">
-      <SearchBar submitSearch={submitSearch} />
+      <SearchBar submitSearch={submitSearch} type="search" />
       {renderMovies()}
     </div>
   );
