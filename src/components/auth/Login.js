@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Alert, Button, Card, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { loginUser } from "../../redux/actions/userActions";
+import { clearErrMsg, loginUser } from "../../redux/actions/userActions";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -26,7 +26,14 @@ const Login = () => {
       <Card className="login-card">
         <Card.Body>
           <h2 className="text-center mb-4">Log In</h2>
-          {user.errMsg && <Alert variant="danger">{user.errMsg}</Alert>}
+          {user.errMsg && (
+            <Alert
+              variant="danger"
+              onClose={() => dispatch(clearErrMsg())}
+              dismissible>
+              {user.errMsg}
+            </Alert>
+          )}
           <Form onSubmit={submitForm}>
             <Form.Group controlId="formUsername">
               <Form.Label>Username</Form.Label>

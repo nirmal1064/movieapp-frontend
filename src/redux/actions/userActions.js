@@ -33,6 +33,10 @@ export const loginUser =
       });
   };
 
+export const clearErrMsg = () => (dispatch) => {
+  dispatch({ type: UserActionTypes.CLEAR_ERR_MSG });
+};
+
 export const logout = () => (dispatch) => {
   localStorage.removeItem("user");
   batch(() => {

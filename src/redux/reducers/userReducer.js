@@ -49,10 +49,9 @@ export const userReducer = (state = persistedState, { type, payload }) => {
         isLoading: false
       };
     case UserActionTypes.LOGIN_FAIL:
-      return {
-        ...state,
-        errMsg: payload.msg
-      };
+      return { ...state, errMsg: payload.msg };
+    case UserActionTypes.CLEAR_ERR_MSG:
+      return { ...state, errMsg: "" };
     default:
       return state;
   }
