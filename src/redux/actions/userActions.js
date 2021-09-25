@@ -1,3 +1,4 @@
+import { batch } from "react-redux";
 import API from "../../api";
 import { UserActionTypes } from "../constants/userActionTypes";
 
@@ -34,6 +35,8 @@ export const loginUser =
 
 export const logout = () => (dispatch) => {
   localStorage.removeItem("user");
-  dispatch({ type: UserActionTypes.LOGOUT });
-  dispatch({ type: UserActionTypes.CLEAR_MOVIES });
+  batch(() => {
+    dispatch({ type: UserActionTypes.LOGOUT });
+    dispatch({ type: UserActionTypes.CLEAR_MOVIES });
+  });
 };
