@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getWatched } from "../../redux/actions/movieActions";
+import {
+  filterWatchedMovies,
+  getWatched
+} from "../../redux/actions/movieActions";
 import LoadingSpinner from "../LoadingSpinner";
 import PaginationTab from "../PaginationTab";
+import SearchBar from "../SearchBar";
 import MovieList from "./MovieList";
 
 const Watched = () => {
@@ -20,6 +24,15 @@ const Watched = () => {
 
   const pageChange = (pageNumber) => setCurrentPage(pageNumber);
 
+  const submitSearch = (searchTerm) => {
+    setCurrentPage(1);
+    if (searchTerm.length > 2) {
+      dispatch(filterWatchedMovies(searchTerm));
+    } else if (searchTerm.length === 0) {
+      dispatch(getWatched());
+    }
+  };
+
   useEffect(() => {
     dispatch(getWatched());
   }, [dispatch]);
@@ -28,6 +41,7 @@ const Watched = () => {
     if (watched.length > 0) {
       return (
         <>
+          <SearchBar submitSearch={submitSearch} type="watched" />
           <MovieList movies={movies} type="watched" />
           <PaginationTab
             currentPage={currentPage}
