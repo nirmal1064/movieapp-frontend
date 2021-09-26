@@ -7,6 +7,7 @@ import {
 import LoadingSpinner from "../LoadingSpinner";
 import PaginationTab from "../PaginationTab";
 import SearchBar from "../SearchBar";
+import Toaster from "../Toaster";
 import MovieList from "./MovieList";
 
 const Watched = () => {
@@ -59,7 +60,12 @@ const Watched = () => {
     }
   };
 
-  return <div className="text-center mt-2">{renderWatched()}</div>;
+  return (
+    <div className="text-center mt-2">
+      {renderWatched()}
+      {movie.movieMsg && <Toaster msg={movie.movieMsg} />}
+    </div>
+  );
 };
 
 export default Watched;

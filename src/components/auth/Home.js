@@ -6,6 +6,7 @@ import LoadingSpinner from "../LoadingSpinner";
 import MovieList from "../movie/MovieList";
 import PaginationTab from "../PaginationTab";
 import SearchBar from "../SearchBar";
+import Toaster from "../Toaster";
 
 const Home = () => {
   const movie = useSelector((state) => state.movie);
@@ -59,6 +60,7 @@ const Home = () => {
     <div className="text-center mt-2">
       <SearchBar submitSearch={submitSearch} type="search" />
       {renderMovies()}
+      {movie.movieMsg && <Toaster msg={movie.movieMsg} />}
     </div>
   );
 };

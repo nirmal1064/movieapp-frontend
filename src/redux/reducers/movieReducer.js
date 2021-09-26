@@ -4,7 +4,8 @@ const initialState = {
   watched: [],
   watchList: [],
   loading: false,
-  search: {}
+  search: {},
+  movieMsg: ""
 };
 
 export const movieReducer = (state = initialState, { type, payload }) => {
@@ -22,17 +23,27 @@ export const movieReducer = (state = initialState, { type, payload }) => {
     case UserActionTypes.REMOVE_WATCHED:
       return {
         ...state,
-        watched: state.watched.filter((movie) => movie._id !== payload)
+        watched: state.watched.filter((movie) => movie._id !== payload.data),
+        movieMsg: payload.msg
       };
     case UserActionTypes.REMOVE_WATCHLIST:
       return {
         ...state,
-        watchList: state.watchList.filter((movie) => movie._id !== payload)
+        watchList: state.watchList.filter((m) => m._id !== payload.data),
+        movieMsg: payload.msg
       };
     case UserActionTypes.ADD_WATCHED:
-      return { ...state, watched: [...state.watched, payload] };
+      return {
+        ...state,
+        watched: [...state.watched, payload.data],
+        movieMsg: payload.msg
+      };
     case UserActionTypes.ADD_WATCHLIST:
-      return { ...state, watchList: [...state.watchList, payload] };
+      return {
+        ...state,
+        watchList: [...state.watchList, payload.data],
+        movieMsg: payload.msg
+      };
     case UserActionTypes.REMOVE_WATCHED_FAIL:
     case UserActionTypes.REMOVE_WATCHLIST_FAIL:
     case UserActionTypes.ADD_WATCHED_FAIL:
@@ -49,6 +60,8 @@ export const movieReducer = (state = initialState, { type, payload }) => {
       return { ...state, search: {}, loading: false };
     case UserActionTypes.MOVIE_LOADING:
       return { ...state, loading: true };
+    case UserActionTypes.CLEAR_MOVIE_MSG:
+      return { ...state, movieMsg: "" };
     default:
       return state;
   }

@@ -7,6 +7,7 @@ import {
 import LoadingSpinner from "../LoadingSpinner";
 import PaginationTab from "../PaginationTab";
 import SearchBar from "../SearchBar";
+import Toaster from "../Toaster";
 import MovieList from "./MovieList";
 
 const WatchList = () => {
@@ -60,7 +61,12 @@ const WatchList = () => {
     }
   };
 
-  return <div className="text-center mt-2">{renderWatchlist()}</div>;
+  return (
+    <div className="text-center mt-2">
+      {renderWatchlist()}
+      {movie.movieMsg && <Toaster msg={movie.movieMsg} />}
+    </div>
+  );
 };
 
 export default WatchList;
