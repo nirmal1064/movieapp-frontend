@@ -38,7 +38,6 @@ export const userReducer = (state = persistedState, { type, payload }) => {
       };
     case UserActionTypes.REGISTER_FAIL:
     case UserActionTypes.LOGOUT:
-    case UserActionTypes.USER_LOADING_FAIL:
       return {
         ...state,
         id: null,
@@ -48,6 +47,8 @@ export const userReducer = (state = persistedState, { type, payload }) => {
         token: null,
         isLoading: false
       };
+    case UserActionTypes.USER_LOADING_FAIL:
+      return { ...initialState, errMsg: payload };
     case UserActionTypes.LOGIN_FAIL:
       return { ...state, errMsg: payload.msg };
     case UserActionTypes.CLEAR_ERR_MSG:

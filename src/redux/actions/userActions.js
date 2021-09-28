@@ -9,7 +9,11 @@ export const loadUser = () => (dispatch) => {
       dispatch({ type: UserActionTypes.USER_LOADED });
     })
     .catch(() => {
-      dispatch({ type: UserActionTypes.USER_LOADING_FAIL });
+      localStorage.removeItem("user");
+      dispatch({
+        type: UserActionTypes.USER_LOADING_FAIL,
+        payload: "You must login first"
+      });
     });
 };
 
