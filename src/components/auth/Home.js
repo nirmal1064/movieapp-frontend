@@ -19,6 +19,7 @@ const Home = () => {
 
   const pageChange = (p) => {
     setCurrentPage(p);
+    window.scrollTo(0, 0);
     dispatch(searchForMovies({ s: searchValue, p }));
   };
 

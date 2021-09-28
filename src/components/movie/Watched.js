@@ -23,7 +23,10 @@ const Watched = () => {
   const firstIndex = lastIndex - moviesPerPage;
   const movies = watched.slice(firstIndex, lastIndex);
 
-  const pageChange = (pageNumber) => setCurrentPage(pageNumber);
+  const pageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo(0, 0);
+  };
 
   const submitSearch = (searchTerm) => {
     setCurrentPage(1);
